@@ -1,3 +1,4 @@
+
 use k256::elliptic_curve::sec1::ToEncodedPoint;
 use k256::elliptic_curve::PrimeField;
 use k256::{ProjectivePoint, Scalar, AffinePoint};
@@ -79,7 +80,7 @@ fn main() {
                 let encoded = affine.to_encoded_point(false);
                 let pub_bytes = encoded.as_bytes();
 
-                if pub_bytes[1] == 0 && pub_bytes[2] == 0 && (pub_bytes[3] & 0xF0) == 0 {
+                if pub_bytes[1] == 0 && pub_bytes[2] == 0 && (pub_bytes[4] & 0xF0) == 0 {
                     let absolute_index = absolute_offset + i;
                     let mut x_suffix = [0u8; 8];
                     x_suffix.copy_from_slice(&pub_bytes[25..33]);
@@ -101,5 +102,6 @@ fn main() {
         let elapsed = start_time.elapsed().as_secs_f64();
         println!("Progress: {} / {} steps | Speed: {:.2} keys/sec", current_step, my_max_steps, current_step as f64 / elapsed);
     }
-    println!("\n✅ Shard {} finished successfully.", shard_id);
+    println!("
+✅ Shard {} finished successfully.", shard_id);
       }
