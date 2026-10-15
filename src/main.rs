@@ -80,7 +80,7 @@ fn main() {
                 let encoded = affine.to_encoded_point(false);
                 let pub_bytes = encoded.as_bytes();
 
-                if pub_bytes[1] == 0 && pub_bytes[2] == 0 && (pub_bytes[4] & 0xF0) == 0 {
+                if pub_bytes[1] == 0 && pub_bytes[2] == 0 && (pub_bytes[3] & 0xF0) == 0 {
                     let absolute_index = absolute_offset + i;
                     let mut x_suffix = [0u8; 8];
                     x_suffix.copy_from_slice(&pub_bytes[25..33]);
